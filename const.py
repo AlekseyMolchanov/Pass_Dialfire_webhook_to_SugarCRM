@@ -4,7 +4,7 @@ try:
     assigned_user_id = os.environ['SUGAR_CRM_ASSIGNED_USER_ID']
     server_host = os.environ['SERVER_HOST']
     server_port = os.environ['SERVER_PORT']
-    server_debug = bool(int(os.environ['SERVER_DEBUG']))
+    server_debug = bool(int(os.environ.get('SERVER_DEBUG') or 0))
 except:
     print('''
 ######## Warning ########
