@@ -56,7 +56,7 @@ def process(session, input_data):
     obj.status = 'Held'
     obj.direction = 'Outbound'
     obj.name = 'Outbound call with dialfire'
-    obj.deleted = 0
+    obj.deleted = '0'
     obj.description = description
     obj.date_start = dt_fired.strftime(FMT_OUT)
     obj.parent_type = Task.module
