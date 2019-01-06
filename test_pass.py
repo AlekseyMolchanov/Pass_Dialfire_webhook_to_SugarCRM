@@ -9,8 +9,7 @@ from processor import process
 
 from const import FIELDS
 
-TASK_ID = "56decc66-6ab7-e544-71ac-5c326c701c0e"
-
+TASK_ID = os.environ['SUGAR_CRM_WEBHOOK_TASK_ID']
 
 @pytest.fixture(scope="module")
 def session():
