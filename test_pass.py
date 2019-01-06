@@ -39,6 +39,33 @@ def test_source_task(session, state):
     assert task
 
 
+def test_invalid_input1(session, state):
+
+    input_data = {
+        "contact": {
+            "$ref": 'xxxx-xxxx-xxxx-xxxx',
+            "transaction": {
+                "comment": "My comment from the call form"
+            },
+            "fired": "2018-12-27T11:41:40.249Z",
+        }
+    }
+    call_id, result = process(session, input_data)
+    assert not call_id
+
+def test_invalid_input2(session, state):
+
+    input_data = {
+        "contact": {
+            "transaction": {
+                "comment": "My comment from the call form"
+            },
+            "fired": "2018-12-27T11:41:40.249Z",
+        }
+    }
+    call_id, result = process(session, input_data)
+    assert not call_id
+
 def test_assert_input__eq__output(session, state):
 
     input_data = {
