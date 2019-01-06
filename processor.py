@@ -44,11 +44,11 @@ def process(session, input_data):
     fired = contact.get('fired')
     description = contact.get('transaction', {}).get('comment')
     if not task_id:
-        return dict(result=False, message="task_id not set")
+        return None, []
     
     task = session.get_entry(Task.module, task_id)
     if not task:
-        return dict(result=False, message="Task not found [%s]" % task_id)
+        return None, []
 
     dt_fired = datetime.strptime(fired, FMT_IN)
 
