@@ -11,9 +11,6 @@ from const import server_port as port
 from processor import process
 from connection import sugar_crm_connect, server_settings
 
-import logging
-logging.basicConfig(level=logging.INFO)
-
 session = sugar_crm_connect()
 if not session:
     print("\n######## Warning ########")
