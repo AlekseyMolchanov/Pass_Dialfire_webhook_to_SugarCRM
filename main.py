@@ -9,16 +9,26 @@ from const import server_debug as debug
 from const import server_host as host
 from const import server_port as port
 from processor import process
-from connection import connect
+from connection import sugar_crm_connect, server_settings
 
 import logging
 logging.basicConfig(level=logging.INFO)
 
-session = connect()
+session = sugar_crm_connect()
 if not session:
     print("\n######## Warning ########")
     print("You must define Environment Variables:")
     print("SUGAR_CRM_URL, SUGAR_CRM_USERNAME and SUGAR_CRM_PASSWORD")
+    print("###########################\n")
+    exit(1)
+
+settings = server_settings()
+if not settings:
+    print("\n######## Warning ########")
+    print("You must define Environment Variables:")
+    print("SERVER_HOST, SERVER_PORT")
+    print("\n######## Optional ########")
+    print("SERVER_DEBUG, SUGAR_CRM_ASSIGNED_USER_ID")
     print("###########################\n")
     exit(1)
 
@@ -33,4 +43,4 @@ def webhook_post():
 
 
 if __name__ == "__main__":
-    app.run(debug=debug, host=host, port=port)
+    app.run(**settings)

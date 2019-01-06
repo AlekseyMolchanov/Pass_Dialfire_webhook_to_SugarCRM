@@ -35,7 +35,7 @@ Expected output
 '''
 
 from sugarcrm import Call, Task
-from const import FMT_IN, FMT_OUT, assigned_user_id, FIELDS
+from const import FMT_IN, FMT_OUT, ASSIGNED_USER_ID, FIELDS
 
 def process(session, input_data):
 
@@ -62,7 +62,7 @@ def process(session, input_data):
     obj.parent_type = Task.module
     obj.parent_id = task.id
     obj.parent_name = task.name
-    obj.assigned_user_id = assigned_user_id
+    obj.assigned_user_id = ASSIGNED_USER_ID
 
     call = session.set_entry(obj)
 

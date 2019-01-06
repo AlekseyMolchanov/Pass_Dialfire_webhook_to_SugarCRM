@@ -4,7 +4,7 @@
 import os
 import pytest
 from sugarcrm import Call, Task
-from connection import connect
+from connection import sugar_crm_connect, server_settings
 from processor import process
 
 from const import FIELDS
@@ -14,7 +14,7 @@ TASK_ID = "56decc66-6ab7-e544-71ac-5c326c701c0e"
 
 @pytest.fixture(scope="module")
 def session():
-    session = connect()
+    session = sugar_crm_connect()
     return session
 
 
@@ -32,6 +32,16 @@ def test_env(session, state):
     assert os.environ.get('SUGAR_CRM_USERNAME')
     assert os.environ.get('SUGAR_CRM_PASSWORD')
     assert os.environ.get('SUGAR_CRM_ASSIGNED_USER_ID')
+
+def test_env(session, state):
+    del os.environ['SERVER_HOST']
+    del os.environ['SUGAR_CRM_URL']
+    
+    session = sugar_crm_connect()
+    assert not session
+
+    setting = server_settings()
+    assert not setting
 
 
 def test_source_task(session, state):
