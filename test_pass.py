@@ -33,7 +33,7 @@ def test_env(session, state):
     assert os.environ.get('SUGAR_CRM_PASSWORD')
     assert os.environ.get('SUGAR_CRM_ASSIGNED_USER_ID')
 
-def test_env(session, state):
+def test_invalid_env(session, state):
     del os.environ['SERVER_HOST']
     del os.environ['SUGAR_CRM_URL']
     
