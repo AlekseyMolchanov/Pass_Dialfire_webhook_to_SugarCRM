@@ -8,13 +8,21 @@
 
 Define Environment Variables
 
-    WEBHOOK_HOST
-    WEBHOOK_PORT
+    SERVER_HOST - public host
+    SERVER_PORT - public port
+    SERVER_DEBUG - web server debug mode
 
     SUGAR_CRM_URL
     SUGAR_CRM_USERNAME
-    SUGAR_CRM_PASSWORD
+    SUGAR_CRM_PASSWORD 
+
+    SUGAR_CRM_ASSIGNED_USER_ID - uuid assigned user
 
 Install requirements
     
     pip install -r requirements.txt
+
+# Run server
+    
+    ./main.py
+
