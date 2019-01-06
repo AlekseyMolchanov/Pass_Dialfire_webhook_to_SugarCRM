@@ -13,13 +13,13 @@ TASK_ID = "56decc66-6ab7-e544-71ac-5c326c701c0e"
 
 
 @pytest.fixture(scope="module")
-def session(request):
+def session():
     session = connect()
     return session
 
 
 @pytest.fixture(scope="module")
-def state(request):
+def state():
     __state = {'account': None}
     return __state
 

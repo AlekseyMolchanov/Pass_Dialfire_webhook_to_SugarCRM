@@ -11,6 +11,9 @@ from const import server_port as port
 from processor import process
 from connection import connect
 
+import logging
+logging.basicConfig(level=logging.INFO)
+
 session = connect()
 if not session:
     print("\n######## Warning ########")
