@@ -9,6 +9,8 @@ from processor import process
 
 from const import FIELDS
 
+TASK_ID = "56decc66-6ab7-e544-71ac-5c326c701c0e"
+
 
 @pytest.fixture(scope="module")
 def session(request):
@@ -29,15 +31,19 @@ def test_env(session, state):
 
     assert os.environ.get('SUGAR_CRM_USERNAME')
     assert os.environ.get('SUGAR_CRM_PASSWORD')
+    assert os.environ.get('SUGAR_CRM_ASSIGNED_USER_ID')
+
+
+def test_source_task(session, state):
+    task = session.get_entry(Task.module, TASK_ID)
+    assert task
 
 
 def test_assert_input__eq__output(session, state):
 
-    task_id = "56decc66-6ab7-e544-71ac-5c326c701c0e"
-
     input_data = {
         "contact": {
-            "$ref": task_id,
+            "$ref": TASK_ID,
             "transaction": {
                 "comment": "My comment from the call form"
             },
@@ -49,7 +55,7 @@ def test_assert_input__eq__output(session, state):
     assert call_id
     assert result
 
-    task = session.get_entry(Task.module, task_id)
+    task = session.get_entry(Task.module, TASK_ID)
     call = session.get_entry(Call.module, call_id)
 
     for field in FIELDS:
