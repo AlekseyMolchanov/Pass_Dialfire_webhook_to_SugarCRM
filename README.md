@@ -18,7 +18,7 @@ Define Environment Variables
 
     SUGAR_CRM_ASSIGNED_USER_ID - optional uuid assigned user
 
-    SUGAR_CRM_WEBHOOK_TASK_ID - source task uuid for passing tests
+    SUGAR_CRM_WEBHOOK_CONTACT_ID - source task uuid for passing tests
 
 Install requirements
     
@@ -26,7 +26,7 @@ Install requirements
 
 # Run test
 
-    > define environment variable SUGAR_CRM_WEBHOOK_TASK_ID and run   
+    > define environment variable SUGAR_CRM_WEBHOOK_CONTACT_ID and run   
     pytest -vs
 
 # Run server
