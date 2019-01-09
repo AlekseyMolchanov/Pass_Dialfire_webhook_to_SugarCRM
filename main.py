@@ -28,6 +28,9 @@ if not settings:
 
 app = Flask(__name__)
 
+@app.route('/')
+def webhook_index():
+    return 'index'
 
 @app.route('/webhook', methods=['POST'])
 def webhook_post():
