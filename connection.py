@@ -10,7 +10,7 @@ def sugar_crm_connect():
     try:
         auth=Session.local_auth
 
-        if os.environ.get('CIRCLECI'):
+        if os.environ.get('CIRCLECI') or os.environ.get('REMOTE'):
             auth=Session.remote_auth
 
         url = os.environ['SUGAR_CRM_URL']
@@ -25,8 +25,8 @@ def sugar_crm_connect():
 def server_settings():
     _connect = dict()
     try:
-        host = os.environ['SERVER_HOST']
-        port = os.environ['SERVER_PORT']
+        host = os.environ.get('SERVER_HOST') or '0.0.0.0'
+        port = os.environ.get('SERVER_PORT') or '8080'
         debug = bool(int(os.environ.get('SERVER_DEBUG') or 0))
         _connect = dict(
             debug=debug, 
