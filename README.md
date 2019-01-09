@@ -55,9 +55,6 @@ Install requirements
         -e SUGAR_CRM_USERNAME \
         -e SUGAR_CRM_PASSWORD \
         -e SUGAR_CRM_ASSIGNED_USER_ID \
-        -e SERVER_DEBUG \
-        -e REMOTE \
         dialfire_webhook
 
     > open http://127.0.0.1:8080
-    
