@@ -34,20 +34,20 @@ Expected output
 │   {'name': 'assigned_user_id', 'value': '1491fcc2-c6f3-11e8-9407-0ea10e74340a'},
 '''
 
-from sugarcrm import Call, Task
+from sugarcrm import Call, Contact
 from const import FMT_IN, FMT_OUT, ASSIGNED_USER_ID, FIELDS
 
 def process(session, input_data):
 
     contact = input_data.get('contact') or {}
-    task_id = contact.get('$ref')
+    contact_id = contact.get('$ref')
     fired = contact.get('fired')
     description = contact.get('transaction', {}).get('comment')
-    if not task_id:
+    if not contact_id:
         return None, []
     
-    task = session.get_entry(Task.module, task_id)
-    if not task:
+    contact = session.get_entry(Contact.module, contact_id)
+    if not contact:
         return None, []
 
     dt_fired = datetime.strptime(fired, FMT_IN)
@@ -59,9 +59,9 @@ def process(session, input_data):
     obj.deleted = '0'
     obj.description = description
     obj.date_start = dt_fired.strftime(FMT_OUT)
-    obj.parent_type = Task.module
-    obj.parent_id = task.id
-    obj.parent_name = task.name
+    obj.parent_type = Contact.module
+    obj.parent_id = contact.id
+    obj.parent_name =  "{} {}".format(contact.first_name, contact.last_name).strip()
     obj.assigned_user_id = ASSIGNED_USER_ID
 
     call = session.set_entry(obj)

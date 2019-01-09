@@ -3,13 +3,13 @@
 
 import os
 import pytest
-from sugarcrm import Call, Task
+from sugarcrm import Call, Contact
 from connection import sugar_crm_connect, server_settings
 from processor import process
 
 from const import FIELDS
 
-TASK_ID = os.environ['SUGAR_CRM_WEBHOOK_TASK_ID']
+CONTACT_ID = os.environ['SUGAR_CRM_WEBHOOK_CONTACT_ID']
 
 @pytest.fixture(scope="module")
 def session():
@@ -43,9 +43,9 @@ def test_invalid_env(session, state):
     assert not setting
 
 
-def test_source_task(session, state):
-    task = session.get_entry(Task.module, TASK_ID)
-    assert task
+def test_source_contact(session, state):
+    contact = session.get_entry(Contact.module, CONTACT_ID)
+    assert contact
 
 
 def test_invalid_input1(session, state):
@@ -79,7 +79,7 @@ def test_assert_input__eq__output(session, state):
 
     input_data = {
         "contact": {
-            "$ref": TASK_ID,
+            "$ref": CONTACT_ID,
             "transaction": {
                 "comment": "My comment from the call form"
             },
@@ -91,7 +91,7 @@ def test_assert_input__eq__output(session, state):
     assert call_id
     assert result
 
-    task = session.get_entry(Task.module, TASK_ID)
+    contact = session.get_entry(Contact.module, CONTACT_ID)
     call = session.get_entry(Call.module, call_id)
 
     for field in FIELDS:
