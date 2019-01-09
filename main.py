@@ -5,9 +5,6 @@ from json import dumps
 from flask import Flask, request
 from sugarcrm import Call
 
-from const import server_debug as debug
-from const import server_host as host
-from const import server_port as port
 from processor import process
 from connection import sugar_crm_connect, server_settings
 
