@@ -21,9 +21,40 @@ Define Environment Variables
     SERVER_PORT - optional public port, default 8080
     SERVER_DEBUG - optional web server debug mode, default False
 
-Install requirements
+
+# Install as service 
     
+    cd /opt
+    git clone https://github.com/AlekseyMolchanov/Pass_Dialfire_webhook_to_SugarCRM dialfire_webhook
+    cd dialfire_webhook
+
+a)  Docker
+
+    docker build --rm -f "Dockerfile" -t dialfire_webhook:latest .
+    docker run \
+        -it \
+        --rm \
+        -p 8080:8080 \
+        -e SUGAR_CRM_URL \
+        -e SUGAR_CRM_USERNAME \
+        -e SUGAR_CRM_PASSWORD \
+        -e SUGAR_CRM_ASSIGNED_USER_ID \
+        dialfire_webhook
+
+b) without Docker
+    
+    apt-get update
+    apt-get install supervisor uwsgi uwsgi-plugin-python -y
+
     pip install -r requirements.txt
+
+    ln -s hook.supervisor.conf /etc/supervisor/conf.d/hook.supervisor.conf
+
+    supervisorctl reload
+    supervisorctl restart hook
+
+    
+
 
 # Run test
 
