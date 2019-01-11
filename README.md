@@ -23,6 +23,11 @@ Define Environment Variables
 
 
 # Install as service 
+
+    export SUGAR_CRM_URL=http://......./service/v4_1/rest.php
+    export SUGAR_CRM_USERNAME=.......
+    export SUGAR_CRM_PASSWORD='.......'
+    export SUGAR_CRM_ASSIGNED_USER_ID='.......'
     
     cd /opt
     git clone https://github.com/AlekseyMolchanov/Pass_Dialfire_webhook_to_SugarCRM dialfire_webhook
@@ -53,7 +58,8 @@ b) without Docker
     supervisorctl reload
     supervisorctl restart hook
 
-    
+
+ c) open http://127.0.0.1:8080   
 
 
 # Run test
@@ -64,28 +70,4 @@ b) without Docker
 # Run server dev server
     
     ./main.py
-
-# Run docker container
-
-    > build
-
-    docker build --rm -f "Dockerfile" -t dialfire_webhook:latest .
-
-    > run 
-
-    export SUGAR_CRM_URL=http://......./service/v4_1/rest.php
-    export SUGAR_CRM_USERNAME=.......
-    export SUGAR_CRM_PASSWORD='.......'
-    export SUGAR_CRM_ASSIGNED_USER_ID='.......'
-
-    docker run \
-        -it \
-        --rm \
-        -p 8080:8080 \
-        -e SUGAR_CRM_URL \
-        -e SUGAR_CRM_USERNAME \
-        -e SUGAR_CRM_PASSWORD \
-        -e SUGAR_CRM_ASSIGNED_USER_ID \
-        dialfire_webhook
-
-    > open http://127.0.0.1:8080
+    
