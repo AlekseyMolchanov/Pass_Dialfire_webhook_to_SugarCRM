@@ -7,7 +7,7 @@ build:
 clear_build:
 	docker build --no-cache --rm -f "Dockerfile" -t dialfire_webhook:latest .
 	
-run_dicker:
+run_docker:
 
 	docker run \
         -it \
