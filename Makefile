@@ -18,5 +18,5 @@ run_docker:
         -e SUGAR_CRM_PASSWORD \
         -e SUGAR_CRM_ASSIGNED_USER_ID \
         -e no_proxy \
-        --add-host=$SUGAR_CRM_HOST \
+        --add-host=$(SUGAR_CRM_HOST) \
         dialfire_webhook
