@@ -14,7 +14,10 @@ Define Environment Variables
 
     SUGAR_CRM_ASSIGNED_USER_ID - optional uuid assigned user
     SUGAR_CRM_WEBHOOK_CONTACT_ID - source contact uuid for passing tests
-    
+
+    no_proxy - list of domain names, to request it without default proxy
+    SUGAR_CRM_HOST - define ip of sugar_crm host
+
     REMOTE - optional, flag to use pass as hash, default False - used plain text pass
 
     SERVER_HOST - optional public host, default 0.0.0.0
@@ -23,8 +26,6 @@ Define Environment Variables
 
 
 # Install as service 
-
-    
 
 a)  Docker
     
@@ -48,6 +49,10 @@ a)  Docker
         -e SUGAR_CRM_USERNAME \
         -e SUGAR_CRM_PASSWORD \
         -e SUGAR_CRM_ASSIGNED_USER_ID \
+        -e SERVER_DEBUG \
+        -e REMOTE \
+        -e no_proxy \
+        --add-host=$(SUGAR_CRM_HOST) \
         dialfire_webhook
 
 b) without Docker
