@@ -28,12 +28,7 @@
 a)  Docker
     
     setup environment variables in /etc/environment
-    or 
-    export SUGAR_CRM_URL=http://......./service/v4_1/rest.php
-    export SUGAR_CRM_USERNAME=.......
-    export SUGAR_CRM_PASSWORD='.......'
-    export SUGAR_CRM_ASSIGNED_USER_ID='.......'
-    
+
     cd /opt
     git clone https://github.com/AlekseyMolchanov/Pass_Dialfire_webhook_to_SugarCRM dialfire_webhook
     cd dialfire_webhook
@@ -55,9 +50,13 @@ a)  Docker
 
 b) without Docker
     
-    sodo su
+    sudo su
     apt-get update
     apt-get install supervisor uwsgi uwsgi-plugin-python -y
+
+    cd /opt
+    git clone https://github.com/AlekseyMolchanov/Pass_Dialfire_webhook_to_SugarCRM dialfire_webhook
+    cd dialfire_webhook
 
     pip install -r requirements.txt
 
@@ -68,16 +67,23 @@ b) without Docker
     supervisorctl reload
     supervisorctl restart hook
 
+    to stop service: supervisorctl stop hook
+    to start service: supervisorctl start hook
+    
 
- c) open http://127.0.0.1:8080   
+ c) Developer server
+ 
+    setup environment variables in /etc/environment
 
+    cd /opt
+    git clone https://github.com/AlekseyMolchanov/Pass_Dialfire_webhook_to_SugarCRM dialfire_webhook
+    cd dialfire_webhook
+    pip install -r requirements.txt
+    python main.py
 
 # Run test
 
     > define environment variable SUGAR_CRM_WEBHOOK_CONTACT_ID and run   
     pytest -vs
-
-# Run server dev server
     
-    ./main.py
     

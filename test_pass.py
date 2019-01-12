@@ -24,8 +24,8 @@ def state():
 
 
 def test_env(session, state):
-    assert os.environ.get('SERVER_HOST')
-    assert os.environ.get('SERVER_PORT')
+    # assert os.environ.get('SERVER_HOST')
+    # assert os.environ.get('SERVER_PORT')
     assert os.environ.get('SUGAR_CRM_URL')
 
     assert os.environ.get('SUGAR_CRM_USERNAME')
