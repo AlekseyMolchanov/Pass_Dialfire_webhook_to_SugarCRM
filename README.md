@@ -22,6 +22,10 @@
     SERVER_PORT - optional public port, default 8080
     SERVER_DEBUG - optional web server debug mode, default False
 
+# Usage
+
+    Setup in Dialfire webhook to your address:
+    http://<address>:8080/webhook
 
 # Install as service 
 
@@ -70,7 +74,6 @@ b) without Docker
     to stop service: supervisorctl stop hook
     to start service: supervisorctl start hook
     
-
  c) Developer server
  
     setup environment variables in /etc/environment
