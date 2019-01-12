@@ -33,3 +33,4 @@ WORKDIR /home/www-data/app
 
 ENTRYPOINT ["/home/www-data/app/env/bin/uwsgi", "--ini", "uwsgi.ini"]
 # ENTRYPOINT ["/home/www-data/app/env/bin/python", "main.py"]
+# ENTRYPOINT ["bash"]
