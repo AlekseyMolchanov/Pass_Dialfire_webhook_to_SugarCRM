@@ -4,9 +4,7 @@
 [![codecov](https://codecov.io/gh/AlekseyMolchanov/Pass_Dialfire_webhook_to_SugarCRM/branch/master/graph/badge.svg)](https://codecov.io/gh/AlekseyMolchanov/Pass_Dialfire_webhook_to_SugarCRM)
 
 
-# Install
-
-Define Environment Variables
+# Define Environment Variables
 
     SUGAR_CRM_URL
     SUGAR_CRM_USERNAME
