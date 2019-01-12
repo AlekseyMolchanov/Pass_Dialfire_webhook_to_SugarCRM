@@ -24,6 +24,12 @@ Define Environment Variables
 
 # Install as service 
 
+    
+
+a)  Docker
+    
+    setup environment variables in /etc/environment
+    or 
     export SUGAR_CRM_URL=http://......./service/v4_1/rest.php
     export SUGAR_CRM_USERNAME=.......
     export SUGAR_CRM_PASSWORD='.......'
@@ -32,8 +38,6 @@ Define Environment Variables
     cd /opt
     git clone https://github.com/AlekseyMolchanov/Pass_Dialfire_webhook_to_SugarCRM dialfire_webhook
     cd dialfire_webhook
-
-a)  Docker
 
     docker build --rm -f "Dockerfile" -t dialfire_webhook:latest .
     docker run \
@@ -48,12 +52,15 @@ a)  Docker
 
 b) without Docker
     
+    sodo su
     apt-get update
     apt-get install supervisor uwsgi uwsgi-plugin-python -y
 
     pip install -r requirements.txt
 
-    ln -s hook.supervisor.conf /etc/supervisor/conf.d/hook.supervisor.conf
+    cp hook.supervisor.conf /etc/supervisor/conf.d/hook.supervisor.conf
+
+    setup environment variables in /etc/supervisor/conf.d/hook.supervisor.conf
 
     supervisorctl reload
     supervisorctl restart hook
