@@ -12,6 +12,7 @@ import logging
 
 logFormatter = logging.Formatter("%(asctime)s [%(threadName)-12.12s] [%(levelname)-5.5s]  %(message)s")
 rootLogger = logging.getLogger()
+rootLogger.setLevel(logging.DEBUG)
 fileHandler = logging.FileHandler("dialfire_webhook.log")
 fileHandler.setFormatter(logFormatter)
 rootLogger.addHandler(fileHandler)
