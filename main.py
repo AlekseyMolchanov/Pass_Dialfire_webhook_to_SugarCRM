@@ -8,6 +8,17 @@ from sugarcrm import Call
 from processor import process
 from connection import sugar_crm_connect, server_settings
 
+import logging
+
+logFormatter = logging.Formatter("%(asctime)s [%(threadName)-12.12s] [%(levelname)-5.5s]  %(message)s")
+rootLogger = logging.getLogger()
+fileHandler = logging.FileHandler("dialfire_webhook.log")
+fileHandler.setFormatter(logFormatter)
+rootLogger.addHandler(fileHandler)
+consoleHandler = logging.StreamHandler()
+consoleHandler.setFormatter(logFormatter)
+rootLogger.addHandler(consoleHandler)
+
 session = sugar_crm_connect()
 if not session:
     print("\n######## Warning ########")
@@ -30,11 +41,13 @@ app = Flask(__name__)
 
 @app.route('/')
 def webhook_index():
+    rootLogger.debug("open index")
     return 'index'
 
 @app.route('/webhook', methods=['POST'])
 def webhook_post():
     params = request.get_json(force=True)
+    rootLogger.debug("webhook params: {}".format(params))
     call_id, data = process(session, params)
     return dumps(data)
 
