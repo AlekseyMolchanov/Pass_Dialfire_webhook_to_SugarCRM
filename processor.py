@@ -71,7 +71,7 @@ def process(session, input_data):
     obj = Call()
     obj.status = 'Held'
     obj.direction = 'Outbound'
-    obj.name = 'Outbound call with dialfire'
+    obj.name = 'Outbound call'
     obj.deleted = '0'
     obj.description = description
     obj.date_start = dt_fired.strftime(FMT_OUT)
