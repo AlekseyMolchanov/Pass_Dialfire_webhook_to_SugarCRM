@@ -34,7 +34,7 @@ Expected output
 │   {'name': 'assigned_user_id', 'value': '1491fcc2-c6f3-11e8-9407-0ea10e74340a'},
 '''
 
-from sugarcrm import Call, Contact, Account
+from sugarcrm import Call, Contact, User
 from const import FMT_IN, FMT_OUT, ASSIGNED_USER_ID, FIELDS
 from logging import getLogger
 
@@ -51,7 +51,7 @@ def process(session, input_data):
     logger.debug('fired: {}'.format(fired))
     
     description = contact.get('$comment')
-    logger.debug('fired: {}'.format(description))
+    logger.debug('description: {}'.format(description))
 
     if not contact_id:
         return None, []
@@ -60,8 +60,8 @@ def process(session, input_data):
     logger.debug('contact: {}'.format(contact))
 
     logger.debug('assigned_user_id: {}'.format(ASSIGNED_USER_ID))
-    account = session.get_entry(Account.module, ASSIGNED_USER_ID)
-    logger.debug('account: {}'.format(account))
+    user = session.get_entry(User.module, ASSIGNED_USER_ID)
+    logger.debug('User: {}'.format(user))
 
     if not contact:
         return None, []

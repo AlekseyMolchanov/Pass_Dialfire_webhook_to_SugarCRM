@@ -48,7 +48,7 @@ def webhook_index():
 @app.route('/webhook', methods=['POST'])
 def webhook_post():
     params = request.get_json(force=True)
-    rootLogger.debug("webhook params: {}".format(params))
+    # rootLogger.debug("webhook params: {}".format(params))
     call_id, data = process(session, params)
     return dumps(data)
 
