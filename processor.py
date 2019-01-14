@@ -39,10 +39,14 @@ from const import FMT_IN, FMT_OUT, ASSIGNED_USER_ID, FIELDS
 
 def process(session, input_data):
 
-    contact = input_data.get('contact') or {}
+    contact = input_data.get('contact')
     contact_id = contact.get('$ref')
-    fired = contact.get('fired')
-    description = contact.get('transaction', {}).get('comment')
+    
+    transaction = input_data.get('transaction')
+    fired = transaction.get('fired')
+
+    description = contact.get('$comment')
+    
     if not contact_id:
         return None, []
     
