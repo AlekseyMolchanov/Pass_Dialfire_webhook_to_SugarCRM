@@ -6,28 +6,32 @@
 
 # Define Environment Variables
 
+    required:
+
     SUGAR_CRM_URL
     SUGAR_CRM_USERNAME
     SUGAR_CRM_PASSWORD 
 
-    SUGAR_CRM_ASSIGNED_USER_ID - optional uuid assigned user
-    SUGAR_CRM_WEBHOOK_CONTACT_ID - source contact uuid for passing tests
+    optional:
 
+    SUGAR_CRM_ASSIGNED_USER_ID - user_id assigned user
     no_proxy - list of domain names, to request it without default proxy
     SUGAR_CRM_HOST - define ip of sugar_crm host
 
-    REMOTE - optional, flag to use pass as hash, default False - used plain text pass
+    REMOTE - flag to use pass as hash, default False - used plain text pass
+    
+    SERVER_HOST - public host, default 0.0.0.0
+    SERVER_PORT - public port, default 8080
+    SERVER_DEBUG - web server debug mode, default False
 
-    SERVER_HOST - optional public host, default 0.0.0.0
-    SERVER_PORT - optional public port, default 8080
-    SERVER_DEBUG - optional web server debug mode, default False
+    for testing:
 
-# Usage
+    SUGAR_CRM_WEBHOOK_CONTACT_ID - source contact uuid for passing tests
 
-    Setup in Dialfire webhook to your address:
-    http://<address>:8080/webhook
 
 # Install as service 
+
+
 
 a)  Docker
     
