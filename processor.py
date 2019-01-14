@@ -44,24 +44,24 @@ def process(session, input_data):
 
     contact = input_data.get('contact')
     contact_id = contact.get('$ref')
-    logger.debug('contact_id: {}'.foramt(contact_id))
+    logger.debug('contact_id: {}'.format(contact_id))
     
     transaction = input_data.get('transaction')
     fired = transaction.get('fired')
-    logger.debug('fired: {}'.foramt(fired))
+    logger.debug('fired: {}'.format(fired))
     
     description = contact.get('$comment')
-    logger.debug('fired: {}'.foramt(description))
+    logger.debug('fired: {}'.format(description))
 
     if not contact_id:
         return None, []
     
     contact = session.get_entry(Contact.module, contact_id)
-    logger.debug('contact: {}'.foramt(contact))
+    logger.debug('contact: {}'.format(contact))
 
-    logger.debug('assigned_user_id: {}'.foramt(ASSIGNED_USER_ID))
+    logger.debug('assigned_user_id: {}'.format(ASSIGNED_USER_ID))
     account = session.get_entry(Account.module, ASSIGNED_USER_ID)
-    logger.debug('account: {}'.foramt(account))
+    logger.debug('account: {}'.format(account))
 
     if not contact:
         return None, []
@@ -81,7 +81,7 @@ def process(session, input_data):
     obj.assigned_user_id = ASSIGNED_USER_ID
 
     call = session.set_entry(obj)
-    logger.debug('call: {}'.foramt(call))
+    logger.debug('call: {}'.format(call))
 
     result = [{'name': 'module', 'value': 'Calls'}]
     for field in FIELDS:
