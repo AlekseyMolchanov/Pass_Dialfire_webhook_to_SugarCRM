@@ -36,21 +36,31 @@ Expected output
 
 from sugarcrm import Call, Contact
 from const import FMT_IN, FMT_OUT, ASSIGNED_USER_ID, FIELDS
+from logging import getLogger
+
+logger = getLogger('process')
 
 def process(session, input_data):
 
     contact = input_data.get('contact')
     contact_id = contact.get('$ref')
+    logger.debug('contact_id: {}'.foramt(contact_id))
     
     transaction = input_data.get('transaction')
     fired = transaction.get('fired')
-
-    description = contact.get('$comment')
+    logger.debug('fired: {}'.foramt(fired))
     
+    description = contact.get('$comment')
+    logger.debug('fired: {}'.foramt(description))
+
     if not contact_id:
         return None, []
     
     contact = session.get_entry(Contact.module, contact_id)
+    logger.debug('contact: {}'.foramt(contact))
+
+    logger.debug('assigned_user_id: {}'.foramt(ASSIGNED_USER_ID))
+
     if not contact:
         return None, []
 
@@ -69,6 +79,7 @@ def process(session, input_data):
     obj.assigned_user_id = ASSIGNED_USER_ID
 
     call = session.set_entry(obj)
+    logger.debug('call: {}'.foramt(call))
 
     result = [{'name': 'module', 'value': 'Calls'}]
     for field in FIELDS:
