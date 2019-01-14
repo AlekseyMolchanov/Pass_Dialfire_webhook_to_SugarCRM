@@ -82,6 +82,7 @@ def process(session, input_data):
 
     call = session.set_entry(obj)
     logger.debug('call: {}'.format(call))
+    logger.debug('call id: {}'.format(call.id))
 
     result = [{'name': 'module', 'value': 'Calls'}]
     for field in FIELDS:
