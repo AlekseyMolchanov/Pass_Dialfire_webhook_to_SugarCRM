@@ -29,6 +29,9 @@ def test_env(session, state):
     assert os.environ.get('SUGAR_CRM_PASSWORD')
     assert os.environ.get('SUGAR_CRM_ASSIGNED_USER_ID')
 
+    del os.environ['SUGAR_CRM_URL']  
+    assert not sugar_crm_connect()
+
     if 'SERVER_HOST' in os.environ:
         del os.environ['SERVER_HOST']
     if 'SERVER_PORT' in os.environ:
