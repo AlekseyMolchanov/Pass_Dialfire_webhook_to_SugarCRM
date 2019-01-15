@@ -29,6 +29,13 @@ def test_env(session, state):
     assert os.environ.get('SUGAR_CRM_PASSWORD')
     assert os.environ.get('SUGAR_CRM_ASSIGNED_USER_ID')
 
+    if 'SERVER_HOST' in os.environ:
+        del os.environ['SERVER_HOST']
+    if 'SERVER_PORT' in os.environ:
+        del os.environ['SERVER_PORT'] 
+    if 'SERVER_DEBUG' in os.environ:
+        del os.environ['SERVER_DEBUG']
+
     sse = server_settings()
     assert sse['host'] == '0.0.0.0'
     assert sse['port'] == '8080'
