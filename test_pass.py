@@ -29,6 +29,21 @@ def test_env(session, state):
     assert os.environ.get('SUGAR_CRM_PASSWORD')
     assert os.environ.get('SUGAR_CRM_ASSIGNED_USER_ID')
 
+    sse = server_settings()
+    assert sse['host'] == '0.0.0.0'
+    assert sse['port'] == '8080'
+    assert sse['debug'] == 0
+
+    os.environ['SERVER_HOST'] = '127.0.0.1'
+    os.environ['SERVER_PORT'] = '8888'
+    os.environ['SERVER_DEBUG'] = '1'
+    
+    sse = server_settings()
+    assert sse['host'] == '127.0.0.1'
+    assert sse['port'] == '8888'
+    assert sse['debug'] == 1
+
+
 
 def test_source_contact(session, state):
     contact = session.get_entry(Contact.module, CONTACT_ID)
