@@ -24,14 +24,10 @@ def state():
 
 
 def test_env(session, state):
-    # assert os.environ.get('SERVER_HOST')
-    # assert os.environ.get('SERVER_PORT')
     assert os.environ.get('SUGAR_CRM_URL')
-
     assert os.environ.get('SUGAR_CRM_USERNAME')
     assert os.environ.get('SUGAR_CRM_PASSWORD')
     assert os.environ.get('SUGAR_CRM_ASSIGNED_USER_ID')
-
 
 
 def test_source_contact(session, state):
@@ -43,11 +39,11 @@ def test_invalid_input1(session, state):
 
     input_data = {
         "contact": {
-            "$ref": 'xxxx-xxxx-xxxx-xxxx',
-            "transaction": {
-                "comment": "My comment from the call form"
-            },
+            "$ref": 'xxxx-xxxx-xxxx-xxxx'
+        },
+        "transaction": {
             "fired": "2018-12-27T11:41:40.249Z",
+            "$comment": "My comment from the call form"
         }
     }
     call_id, result = process(session, input_data)
@@ -56,11 +52,10 @@ def test_invalid_input1(session, state):
 def test_invalid_input2(session, state):
 
     input_data = {
-        "contact": {
-            "transaction": {
-                "comment": "My comment from the call form"
-            },
+        "contact": {},
+        "transaction": {
             "fired": "2018-12-27T11:41:40.249Z",
+            "comment": "My comment from the call form"
         }
     }
     call_id, result = process(session, input_data)
@@ -70,11 +65,11 @@ def test_assert_input__eq__output(session, state):
 
     input_data = {
         "contact": {
-            "$ref": CONTACT_ID,
-            "transaction": {
-                "comment": "My comment from the call form"
-            },
+            "$ref": CONTACT_ID
+        },
+        "transaction": {
             "fired": "2018-12-27T11:41:40.249Z",
+            "$comment": "My comment from the call form"
         }
     }
     call_id, result = process(session, input_data)
