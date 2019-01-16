@@ -81,6 +81,9 @@ def process(session, input_data):
     obj.assigned_user_id = ASSIGNED_USER_ID
 
     call = session.set_entry(obj)
+    
+    session.set_relationship(contact, call)
+    
     logger.debug('call: {}'.format(call))
     logger.debug('call id: {}'.format(call.id))
 
