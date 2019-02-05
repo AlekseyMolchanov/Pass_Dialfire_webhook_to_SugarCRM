@@ -54,6 +54,15 @@
     resource to accept dbsync callback : http://127.0.0.1:8080/webhook
 
 
+# Simplest Run with docker and stop
+
+    ./webhook_start.sh
+
+    and 
+
+    ./webhook_stop.sh
+    
+
 # Run as console process (not recommended for production)
 
     * setup Environment Variables
